@@ -1,0 +1,167 @@
+
+:root {
+    --orange: #f36c21;
+}
+
+.main_container,
+.title_container, a  {
+    display: flex;
+}   
+
+.title_container {
+    background-color: var(--orange); 
+    width: 70%;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+
+
+#logo {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#logo img {
+    width: 80px;
+    margin-left: 10px;
+}
+
+#matches_today,
+.country_container,
+.stscore_container, 
+.score, .nomatches, a {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#matches_today {
+    font-size: 30pt;
+    margin: 0 auto;    
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn_container {
+    display: flex;
+    margin-top: 15px;
+}
+
+.btn_container a {
+    color: var(--orange); 
+    margin: 5px;
+
+}
+
+.txt-underline {
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+a {
+    background-color: black;
+    color: black;
+    padding: 10px;
+    font-size: medium;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.main_container, a {
+    justify-content: center;
+    width: 70%;
+    margin: 10px auto;
+    padding-bottom: 10px;
+}
+
+.main_container:nth-child(even), 
+.main_container:nth-child(even) a {
+    background-color: rgb(238, 231, 231);
+}
+
+.country_container {
+    width: 200px;
+    text-align: center;
+}
+
+.flag_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+
+img {
+    width: 150px;
+    height: auto;
+    
+}
+
+.stscore_container {
+    margin-top: 3%;
+    text-align: center;
+    width: 150px;
+}
+
+.score {
+        font-weight: 500;
+        font-size: 30pt;
+        padding-top: 5%;
+}
+
+.red {
+    color: red;
+}
+
+.nomatches {
+    padding-top: 5%;
+    text-align: center;
+    font-style: italic;
+}
+
+
+@media (max-width: 900px) {
+
+    .flag_container img {
+        width: 125px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .title_container {
+        width: 90%;
+    }
+
+    .main_container {
+        width: 90%;
+    }
+
+    .flag_container img {
+        width: 100px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    #matches_today {
+        font-size: 20pt;
+    }
+
+    .flag_container img {
+        width: 75px;
+    }
+
+    a {
+    margin: 0 5px;
+    font-size: x-small;
+    }
+
+    .stscore_container {
+        margin: 3%;
+    }
+
+    .score {
+        padding-top: 25%;
+    }
+}
