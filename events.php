@@ -5,6 +5,8 @@ $curl_event = curl_init();
 
 global $matchId;
 
+if ($_GET['id'] == $matchId) {
+
 curl_setopt_array($curl_event, array(
   CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures/events?fixture=' . $matchId, 
   CURLOPT_RETURNTRANSFER => true,
@@ -27,6 +29,30 @@ curl_close($curl_event);
 
 $response_event = json_decode($response_event, true);
 
-echo $response_event;
+$array_type = array('Goal' => '⚽', 'Yellow Card' => '🟨', 'Red card' => '🟥'); 
+
+$num_events = $response_event['results'];
+
+for ($i = 0; $i < $num_events; $i++) {
+
+    if (array_key_exists($response_event['response'][$i]['type'], $array_type) ||
+        array_key_exists($response_event['response'][$i]['detail'], $array_type)
+        ) 
+      
+        {
+            
+        echo 
+        $array_type[$response_event['response'][$i]['type']] . 
+        $array_type[$response_event['response'][$i]['detail']] .      
+     
+        $response_event['response'][$i]['time']['elapsed'] . "' " .
+        $response_event['response'][$i]['player']['name'];
+     
+    ($response_event['response'][$i]['detail'] != 'Normal Goal') ? ' (' . $response_event['response'][$i]['detail'] . ')' : null;  
+    echo '<br>';
+    }
+
+}
+}
 
 ?>

@@ -92,8 +92,7 @@ for ($i= ($numGames-1); $i >=0 ; $i--) {
             Scheidsrechter: ' . $response['response'][$i]['fixture']['referee'] . '<br>'
            . (array_key_exists($response['response'][$i]['fixture']['status']['short'], $status)? 
            $status[$response['response'][$i]['fixture']['status']['short']] : null). '</div>'; 
-
-          // include ('./events.php');       
+          
            }
 
          /*
@@ -110,11 +109,12 @@ for ($i= ($numGames-1); $i >=0 ; $i--) {
    
    '</div>
    </div></a>';
-
-    echo '<p>';
  
+  }
 }
-}
+if ($_GET['id']) {
+  include ('./events.php');    
+ }
 }
 else {
   $day = date_create($day);
