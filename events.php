@@ -1,14 +1,10 @@
 
-<?php 
+<?php
 
 $curl_event = curl_init();
 
-global $matchId;
-
-if ($_GET['id'] == $matchId) {
-
 curl_setopt_array($curl_event, array(
-  CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures/events?fixture=' . $matchId, 
+  CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures/events?fixture=' . $_GET['id'], 
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -29,30 +25,92 @@ curl_close($curl_event);
 
 $response_event = json_decode($response_event, true);
 
-$array_type = array('Goal' => '⚽', 'Yellow Card' => '🟨', 'Red card' => '🟥'); 
+/*
+
+$response_json = file_get_contents('./nlos.json', true);
+
+$response_event= json_decode($response_json, true);
+
+*/
 
 $num_events = $response_event['results'];
 
-for ($i = 0; $i < $num_events; $i++) {
+$array_type = array('Goal' => '⚽', 'Yellow Card' => '🟨', 'Red Card' => '🟥');
 
-    if (array_key_exists($response_event['response'][$i]['type'], $array_type) ||
-        array_key_exists($response_event['response'][$i]['detail'], $array_type)
-        ) 
-      
-        {
-            
-        echo 
-        $array_type[$response_event['response'][$i]['type']] . 
-        $array_type[$response_event['response'][$i]['detail']] .      
-     
-        $response_event['response'][$i]['time']['elapsed'] . "' " .
-        $response_event['response'][$i]['player']['name'];
-     
-    ($response_event['response'][$i]['detail'] != 'Normal Goal') ? ' (' . $response_event['response'][$i]['detail'] . ')' : null;  
-    echo '<br>';
+$array_goal = array('Own Goal' => 'eigen goal', 'Penalty' => 'strafschop');
+
+$home_team_events = array();
+$away_team_events = array();
+
+ for ($i = 0; $i < $num_events; $i++) {
+    
+  
+    if (($response_event['response'][$i]['team']['name'] === $homeTeam) && 
+        ($response_event['response'][$i]['type'] === 'Goal' || $response_event['response'][$i]['type'] === 'Card')) {
+        array_push($home_team_events, [ $response_event['response'][$i]['type'], $response_event['response'][$i]['detail'],
+        $response_event['response'][$i]['time']['elapsed'], $response_event['response'][$i]['player']['name']] );
     }
 
-}
-}
+     if (($response_event['response'][$i]['team']['name'] === $awayTeam) && 
+        ($response_event['response'][$i]['type'] === 'Goal' || $response_event['response'][$i]['type'] === 'Card')) {
+        array_push($away_team_events, [ $response_event['response'][$i]['type'], $response_event['response'][$i]['detail'],
+        $response_event['response'][$i]['time']['elapsed'], $response_event['response'][$i]['player']['name']] );
+    }
+  }
 
+  $prevent_loop = true;
+              
+        echo '<div class="main_container_event">
+        <div class= "event_container_home">'; 
+       
+        for($i=0; $i < sizeof($home_team_events); $i++) {
+
+            if (array_key_exists($home_team_events[$i][0], $array_type) ||
+            array_key_exists($home_team_events[$i][1], $array_type)
+            ) 
+            {
+                echo
+               
+               $array_type[$home_team_events[$i][0]] . 
+               $array_type[$home_team_events[$i][1]] . ' ' .     
+            
+               $home_team_events[$i][2] . "' " .
+               $home_team_events[$i][3];
+            };
+
+            if (array_key_exists($home_team_events[$i][1], $array_goal))
+                 { echo ' (' . $array_goal[$home_team_events[$i][1]] . ')'; 
+               }
+               echo '<br>';
+         };
+
+         echo '</div>
+
+         <div class="event_container_away">';  
+
+         for($i=0; $i < sizeof($away_team_events); $i++) {
+
+            if (array_key_exists($away_team_events[$i][0], $array_type) ||
+            array_key_exists($away_team_events[$i][1], $array_type)
+            ) 
+            {
+                echo
+                $array_type[$away_team_events[$i][0]] . 
+                $array_type[$away_team_events[$i][1]] . ' ' .     
+            
+               $away_team_events[$i][2] . "' " .
+               $away_team_events[$i][3];
+            };
+
+            if (array_key_exists($away_team_events[$i][1], $array_goal))
+                 { echo ' (' . $array_goal[$away_team_events[$i][1]] . ')'; 
+               }
+              echo '<br>';
+
+         };
+      
+     echo '
+     </div>
+     </div>';
+     
 ?>

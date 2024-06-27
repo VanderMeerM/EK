@@ -20,7 +20,6 @@ if (!$_GET['date']) {
   $day= date('Y-m-d');
 }
 
-
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -43,7 +42,25 @@ $response = curl_exec($curl);
 
 curl_close($curl);
 
+
 $response = json_decode($response, true);
+
+/*
+$json_matches_path = './matches_today.json'; 
+
+$json_file_mt = fopen($json_matches_path, "w");
+
+fwrite($json_file_mt, $response);
+
+fclose($json_file_mt);
+
+*/
+
+/*
+$response_json = file_get_contents('./match.json', true);
+$response= json_decode($response_json, true);
+
+*/
 
 $numGames= $response['results'];
 $todaysmatches = 'Speelschema';
@@ -51,13 +68,18 @@ $today = 'Vandaag';
 $yesterday = 'Gisteren';
 $tomorrow = 'Morgen';
 
+$prevent_loop = false;
+
+
 $statusInPlay = array('1H', 'HT', '2H','ET', 'BT', 'P', 'SUSP', 'INT');
 
 include('./header.php');
 
-if ($numGames > 0) {
+if ($numGames > 0 ) {
 
 for ($i= ($numGames-1); $i >=0 ; $i--) {
+
+  if (!$prevent_loop) {
 
   $homeTeam = $response['response'][$i]['teams']['home']['name'];
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
@@ -66,9 +88,12 @@ for ($i= ($numGames-1); $i >=0 ; $i--) {
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
   echo '
- 
-  <div class="main_container">  
-  <a href="' . $_SERVER['PHP_SELF'] . '?date='. $_GET['date'] . '&id=' . $matchId . '">
+  <div class="main_container">'; 
+  
+  if (!$_GET['id']) {
+    echo '<a href="' . $_SERVER['PHP_SELF'] . '?date='. $_GET['date'] . '&id=' . $matchId . '">';
+  }
+  echo '
   <div class="country_container">
   <div class="flag_container">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/></div>' . 
@@ -79,28 +104,26 @@ for ($i= ($numGames-1); $i >=0 ; $i--) {
                
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
-         echo $response['response'][$i]['fixture']['venue']['city'] . '<br>' .
-          date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>' .  
+         if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
+         
+         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>' .  
 
           '<div class=' . (in_array($response['response'][$i]['fixture']['status']['short'], $statusInPlay)? '"score red"' : "score") . '>' . 
           $response['response'][$i]['goals']['home'] . '-' . 
-          $response['response'][$i]['goals']['away'] . '<br>
-           </div>'; 
+          $response['response'][$i]['goals']['away'] .
+           '<div style="font-size:15pt">'. (array_key_exists($response['response'][$i]['fixture']['status']['short'], $status)? 
+           $status[$response['response'][$i]['fixture']['status']['short']] : null) . 
+          '</div></div>'; 
 
           if ($_GET['id']) { 
-            echo '<p><div class="stscore_container">
-            Scheidsrechter: ' . $response['response'][$i]['fixture']['referee'] . '<br>'
-           . (array_key_exists($response['response'][$i]['fixture']['status']['short'], $status)? 
-           $status[$response['response'][$i]['fixture']['status']['short']] : null). '</div>'; 
+            echo '<p><div class="stscore_ref">
+            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
+           '<br>(' . explode(', ', $response['response'][$i]['fixture']['referee'])[1] . ')
+           <br></div>'; 
           
            }
 
-         /*
-         if (in_array($response['response'][$i]['fixture']['status']['short'], $statusInPlay)) {
-          echo $response['response'][$i]['fixture']['periods']['first'];
-          };
-          */
-          echo '</div>
+           echo '</div>
          
    <div class="country_container">
    <div class="flag_container">
@@ -108,14 +131,20 @@ for ($i= ($numGames-1); $i >=0 ; $i--) {
    (array_key_exists($awayTeam, $countries) ? $countries[$awayTeam] : $awayTeam) . 
    
    '</div>
-   </div></a>';
+   </div>';
+   if (!$_GET['id']) {
+    echo '</a>';
+   }
+
+   if ($_GET['id']) {
+   include ('./events.php');
+   }      
  
   }
-}
-if ($_GET['id']) {
-  include ('./events.php');    
  }
 }
+} 
+
 else {
   $day = date_create($day);
 echo '<div class="nomatches"> Geen wedstrijden op ' . date_format($day, 'd-m') . '</div>';

@@ -7,7 +7,7 @@ echo '
  <img src="'.$response['response'][0]['league']['logo'] . '"/> 
 </div>
 <div id="matches_today"> '. 
-$todaysmatches . '
+strtoupper($todaysmatches) . '
 
 <div class= "btn_container"> 
 

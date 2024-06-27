@@ -1,0 +1,288 @@
+{
+    "get": "fixtures",
+    "parameters": {
+        "season": "2024",
+        "league": "4",
+        "date": "2024-06-26"
+    },
+    "errors": [],
+    "results": 4,
+    "paging": {
+        "current": 1,
+        "total": 1
+    },
+    "response": [
+        {
+            "fixture": {
+                "id": 1145534,
+                "referee": "D. Siebert",
+                "timezone": "UTC",
+                "date": "2024-06-26T16:00:00+00:00",
+                "timestamp": 1719417600,
+                "periods": {
+                    "first": 1719417600,
+                    "second": 1719421200
+                },
+                "venue": {
+                    "id": 20734,
+                    "name": "Frankfurt Arena",
+                    "city": "Frankfurt am Main"
+                },
+                "status": {
+                    "long": "Match Finished",
+                    "short": "FT",
+                    "elapsed": 90
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2024,
+                "round": "Group E - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 773,
+                    "name": "Slovakia",
+                    "logo": "https://media.api-sports.io/football/teams/773.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 774,
+                    "name": "Romania",
+                    "logo": "https://media.api-sports.io/football/teams/774.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": 1,
+                "away": 1
+            },
+            "score": {
+                "halftime": {
+                    "home": 1,
+                    "away": 1
+                },
+                "fulltime": {
+                    "home": 1,
+                    "away": 1
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 1145535,
+                "referee": "Istvan Kovacs, Romania",
+                "timezone": "UTC",
+                "date": "2024-06-26T19:00:00+00:00",
+                "timestamp": 1719428400,
+                "periods": {
+                    "first": 1719428400,
+                    "second": 1719432000
+                },
+                "venue": {
+                    "id": 720,
+                    "name": "Volksparkstadion",
+                    "city": "Hamburg"
+                },
+                "status": {
+                    "long": "Match Finished",
+                    "short": "FT",
+                    "elapsed": 90
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2024,
+                "round": "Group F - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 770,
+                    "name": "Czech Republic",
+                    "logo": "https://media.api-sports.io/football/teams/770.png",
+                    "winner": false
+                },
+                "away": {
+                    "id": 777,
+                    "name": "Türkiye",
+                    "logo": "https://media.api-sports.io/football/teams/777.png",
+                    "winner": true
+                }
+            },
+            "goals": {
+                "home": 1,
+                "away": 2
+            },
+            "score": {
+                "halftime": {
+                    "home": 0,
+                    "away": 0
+                },
+                "fulltime": {
+                    "home": 1,
+                    "away": 2
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 1189853,
+                "referee": "A. Taylor",
+                "timezone": "UTC",
+                "date": "2024-06-26T16:00:00+00:00",
+                "timestamp": 1719417600,
+                "periods": {
+                    "first": 1719417600,
+                    "second": 1719421200
+                },
+                "venue": {
+                    "id": 20739,
+                    "name": "Stuttgart Arena",
+                    "city": "Stuttgart"
+                },
+                "status": {
+                    "long": "Match Finished",
+                    "short": "FT",
+                    "elapsed": 90
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2024,
+                "round": "Group E - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 772,
+                    "name": "Ukraine",
+                    "logo": "https://media.api-sports.io/football/teams/772.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1,
+                    "name": "Belgium",
+                    "logo": "https://media.api-sports.io/football/teams/1.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": 0,
+                "away": 0
+            },
+            "score": {
+                "halftime": {
+                    "home": 0,
+                    "away": 0
+                },
+                "fulltime": {
+                    "home": 0,
+                    "away": 0
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 1189854,
+                "referee": "Sandro Schärer, Switzerland",
+                "timezone": "UTC",
+                "date": "2024-06-26T19:00:00+00:00",
+                "timestamp": 1719428400,
+                "periods": {
+                    "first": 1719428400,
+                    "second": 1719432000
+                },
+                "venue": {
+                    "id": 20738,
+                    "name": "Arena AufSchalke",
+                    "city": "Gelsenkirchen"
+                },
+                "status": {
+                    "long": "Match Finished",
+                    "short": "FT",
+                    "elapsed": 90
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2024,
+                "round": "Group F - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 1104,
+                    "name": "Georgia",
+                    "logo": "https://media.api-sports.io/football/teams/1104.png",
+                    "winner": true
+                },
+                "away": {
+                    "id": 27,
+                    "name": "Portugal",
+                    "logo": "https://media.api-sports.io/football/teams/27.png",
+                    "winner": false
+                }
+            },
+            "goals": {
+                "home": 2,
+                "away": 0
+            },
+            "score": {
+                "halftime": {
+                    "home": 1,
+                    "away": 0
+                },
+                "fulltime": {
+                    "home": 2,
+                    "away": 0
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        }
+    ]
+}
