@@ -200,6 +200,7 @@ img {
 
     .stscore_container {
         margin: 3%;
+        width: 170px;
     }
 
     .score {
