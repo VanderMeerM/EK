@@ -6,6 +6,7 @@
     <title>EK-wedstrijden</title>   
     <link rel="stylesheet" type="text/css" href="./euro.css" />    
     <link rel="shortcut icon" href="https://www.api-football.com/public/img/favicon.ico">
+
 </head>
 <body>
 
@@ -167,7 +168,6 @@ else {
   $day = date_create($day);
 echo '<div class="nomatches"> Geen wedstrijden op ' . date_format($day, 'd-m') . '</div>';
 };
-
 
 ?>
 

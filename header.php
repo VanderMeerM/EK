@@ -22,7 +22,8 @@ strtoupper($todaysmatches) . '
 <a href="' . $_SERVER['PHP_SELF'] . '?date=' . date('Y-m-d', strtotime('tomorrow')) . '"
 ' . (date('Y-m-d', strtotime('tomorrow')) === $_GET['date'] ?  'class="txt-underline"' : null). '>
 '. $tomorrow . '</a> 
- 
+
+</div> 
 </div>
 </div>
 </div>';
