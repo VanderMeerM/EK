@@ -116,7 +116,8 @@ $array_comments = array(
   'Handball' => 'hands',
   'Unallowed field entering' => 'geen toestemming betreden veld',
   'Holding' => 'vasthouden',
-  'Penalty Shootout' => "penaltyserie"
+  'Penalty Shootout' => 'penaltyserie',
+  'Unsportsmanlike conduct' => 'onsportief gedrag'
 );
 
 $home_team_events = array();
@@ -138,6 +139,7 @@ $away_team_goals = array();
         'detail' => $response_event['response'][$i]['detail'],
         'elapsed' => $response_event['response'][$i]['time']['elapsed'] + $response_event['response'][$i]['time']['extra'], 
         'name' => $response_event['response'][$i]['player']['name'],
+        'assist_name' => $response_event['response'][$i]['assist']['name'],
         'comments' => $response_event['response'][$i]['comments']
         ]);
     }
@@ -152,6 +154,7 @@ $away_team_goals = array();
         'detail' => $response_event['response'][$i]['detail'],
         'elapsed' => $response_event['response'][$i]['time']['elapsed'] + $response_event['response'][$i]['time']['extra'], 
         'name' => $response_event['response'][$i]['player']['name'],
+        'assist_name' => $response_event['response'][$i]['assist']['name'],
         'comments' => $response_event['response'][$i]['comments']
         ]);
     }
@@ -188,6 +191,11 @@ $away_team_goals = array();
             
                $all_team_events[$i]['elapsed'] . "' " .
                $all_team_events[$i]['name'];
+
+               if ($all_team_events[$i]['type'] === 'subst') {
+                echo ' (voor ' . $all_team_events[$i]['assist_name'] . ')';
+               }
+
                if ($all_team_events[$i]['comments']) {
 
                 if (array_key_exists($all_team_events[$i]['comments'], $array_comments))
@@ -208,7 +216,8 @@ $away_team_goals = array();
                echo '</div>';
          }
         
-       echo '</div> 
+       echo '
+       </div> 
        </div>
      </div>';
 
