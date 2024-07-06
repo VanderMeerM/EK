@@ -9,7 +9,7 @@ $countries = array_combine($countries_en, $countries_nl);
 
 $status_short = array('1H', 'HT', '2H', 'ET');
 
-$status_nl = array('1e helft', 'Rust', '2e helft', 'Blessuretijd');
+$status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging');
 
 $status = array_combine($status_short, $status_nl);
 
