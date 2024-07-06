@@ -200,9 +200,9 @@ $away_team_goals = array();
 
                 if (array_key_exists($all_team_events[$i]['comments'], $array_comments))
                 { 
-                  echo ' <i>(' . $array_comments[$all_team_events[$i]['comments']] . 
-                  ($all_team_events[$i]['detail'] === 'Missed Penalty' ? ' <span class="red">gemist </span>' : null) . 
-                   ')</i>'; 
+                  echo ' <i>(' . $array_comments[$all_team_events[$i]['comments']] . ')</i>';
+                  echo ($all_team_events[$i]['detail'] === 'Missed Penalty' ? '<span class="red"> '. strtoupper('<strong>gemist</strong>') . '</span>' : null);  
+                    
               } else {
 
                echo ' <i>(' . $all_team_events[$i]['comments'] . ')</i>';
