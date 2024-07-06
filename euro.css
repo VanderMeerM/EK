@@ -5,7 +5,6 @@
 }
 
 .main_container,
-.main_container_event,
 .title_container, a  {
     display: flex;
 }   
@@ -95,6 +94,7 @@ a {
 .main_container_event {
     padding: 5px;
     margin: 0 auto;
+    position: relative;
 }
 
 .country_container {
@@ -113,6 +113,11 @@ img {
     width: 150px;
     height: auto;
     
+}
+
+#type_pic {
+    width: 20px;
+    height: auto;
 }
 
 #ref {
@@ -144,19 +149,18 @@ img {
 
 .event_container_home, 
 .event_container_away {
-    width: 60%;
     padding: 5px;
-    display:flex;
     justify-content: center;
     line-height: 1.8;
 }
 
+
 .event_container_home{
-    flex-direction: row;
+margin-left: 5%;
 }
 
 .event_container_away{
-    flex-direction: row-reverse;
+margin-left: 70%;
 }
 
 .nomatches {
