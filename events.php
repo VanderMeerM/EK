@@ -147,7 +147,7 @@ $away_team_goals = array();
      if (($response_event['response'][$i]['team']['name'] === $awayTeam) && 
         ($response_event['response'][$i]['type'] === 'Goal' || 
         $response_event['response'][$i]['type'] === 'Card' || 
-        $response_event['response'][$i]['type'] === 'Subst')) {
+        $response_event['response'][$i]['type'] === 'subst')) {
         array_push($all_team_events, [ 
        'team' => $awayTeam,
         'type' => $response_event['response'][$i]['type'], 
