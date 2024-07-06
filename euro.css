@@ -97,6 +97,11 @@ a {
     position: relative;
 }
 
+.main_container_event div:nth-child(even) 
+ {
+    background-color: lightgray;
+}
+
 .country_container {
     width: 200px;
     text-align: center;
