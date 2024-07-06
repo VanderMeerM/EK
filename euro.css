@@ -157,14 +157,14 @@ img {
     padding: 5px;
     justify-content: center;
     line-height: 1.8;
-    margin-left: 5%;
+    margin: 0 5%;
 }
 
 
 .event_container_away 
 {
     text-align: right;
-    margin-right: 5px;
+
 }
 
 
