@@ -27,47 +27,7 @@ if (!file_exists($json_events_path)) {
     
     curl_close($curl_event);
     
-    //$num_events = $response_event['results'];
-    
-      /* 
       
-      $home_team_events = array();
-    $away_team_events = array();
-    
-    $home_team_goals = array();
-    $away_team_goals = array();
-
- 
-    
-     for ($i = 0; $i < $num_events; $i++) {
-          
-        if (($response_event['response'][$i]['team']['name'] === $homeTeam) && 
-            ($response_event['response'][$i]['type'] === 'Goal' || $response_event['response'][$i]['type'] === 'Card')) {
-            array_push($home_team_events, [ $response_event['response'][$i]['type'], $response_event['response'][$i]['detail'],
-            $response_event['response'][$i]['time']['elapsed'], $response_event['response'][$i]['player']['name']] );
-        }
-    
-         if (($response_event['response'][$i]['team']['name'] === $awayTeam ) && 
-            ($response_event['response'][$i]['type'] === 'Goal' || $response_event['response'][$i]['type'] === 'Card')) {
-            array_push($away_team_events, [ $response_event['response'][$i]['type'], $response_event['response'][$i]['detail'],
-            $response_event['response'][$i]['time']['elapsed'], $response_event['response'][$i]['player']['name']] );
-        }
-      }
-    
-    for ($i = 0; $i < sizeof($home_team_events); $i++) {
-      if (($home_team_events[$i][0] === 'Goal') && ($home_team_events[$i][1] !== 'Missed Penalty')) {
-        array_push($home_team_goals, $home_team_events[$i][1]);
-      } 
-    }
-    
-    for ($i = 0; $i < sizeof($away_team_events); $i++) {
-      if (($away_team_events[$i][0] === 'Goal') && ($away_team_events[$i][1] !== 'Missed Penalty')) {
-        array_push($away_team_goals, $away_team_events[$i][1]);
-      } 
-    }
-  
-    */
-    
 if ( ($_GET['date'] < date('Y-m-d', strtotime('today')))) {
 
   $json_file_ev = fopen($json_events_path, "w");
@@ -97,8 +57,6 @@ $response_event= json_decode($response_json, true);
 */
 
 $num_events = $response_event['results'];
-
-//$array_type = array('Goal' => '', 'Yellow Card' => '', 'Red Card' => '', 'subst' => 'W');
 
 $array_type = array('Goal' => 'football.jpg', 'Yellow Card' => 'yellow_card.jpeg', 
 'Red Card' => 'red_card.jpeg', 'subst' => 'substitute.jpg');
@@ -172,11 +130,11 @@ $away_team_goals = array();
 
           if ($all_team_events[$i]['team'] === $homeTeam) {
 
-             echo '<div class= "event_container_home">'; 
+             echo '<div class= "event_container"><span class="align-left">'; 
           }
 
             else if ($all_team_events[$i]['team'] === $awayTeam) {
-              echo '<div class= "event_container_away">'; 
+              echo '<div class= "event_container"><span class="align-right">'; 
             }
          
             if (array_key_exists($all_team_events[$i]['type'], $array_type)
@@ -209,14 +167,16 @@ $away_team_goals = array();
               }
                }
             };
-
-            if (array_key_exists($allteam_events[$i]['detail'], $array_goal))
+           
+            if (array_key_exists($all_team_events[$i]['detail'], $array_goal) &&
+            ($all_team_events[$i]['comments'] != 'Penalty Shootout'))
                  { echo ' (' . $array_goal[$all_team_events[$i]['detail']] . ')'; 
                }
                echo '</div>';
          }
         
        echo '
+       </span>
        </div> 
        </div>
      </div>';

@@ -161,6 +161,7 @@ for ($i=0; $i < $numGames; $i++) {
 
    if ($_GET['id']) {
    include ('./events.php');
+   include ('./lineup.php');
    }      
  
   }
