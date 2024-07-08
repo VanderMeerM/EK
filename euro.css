@@ -34,7 +34,9 @@
 .stscore_container, 
 .score, .nomatches, a,
 .event_container, 
-.event_container {
+.event_container,
+.lineup_container, 
+#start_sub_team {
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -77,14 +79,27 @@ a {
     margin: 0 10px;
 }
 
+.main_container_line {
+    width: 70%;
+    margin: 0 auto;
+}
+
 .main_container,
 .main_container_event,
 .main_container_lineup,
+.main_container_lineup_coach,
+#startteam,
  a {
     justify-content: center;
     width: 70%;
     margin: 10px auto;
     padding-bottom: 10px;
+}
+
+#start_sub_team {
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
 }
 
 .main_container_event,
@@ -98,6 +113,17 @@ a {
     padding: 5px;
     margin: 0 auto;
     position: relative;
+}
+
+.main_container_lineup_home, 
+.main_container_lineup_away {
+    display: inline-block;
+    width: 50%;
+}
+
+.main_container_lineup_away {
+    float: right;
+
 }
 
 .main_container_event div:nth-child(even) 
@@ -177,7 +203,7 @@ img {
 }
 
 .align-left {
-    margin-left: 25%;
+    margin-left: 20%;
 }
 
 .align-right{
@@ -202,12 +228,7 @@ img {
     }
     }
 
-    @media (max-width: 1100px) {
-        .align-right {
-            margin-left: 50%;
-        }
-        }
-
+ 
 @media (max-width: 900px) {
 
     .flag_container img {
@@ -215,7 +236,7 @@ img {
     }
 
     .align-right {
-        margin-left: 40%;
+        margin-left: 50%;
     }
 
     .align-left {
