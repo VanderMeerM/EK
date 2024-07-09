@@ -155,7 +155,14 @@ for ($i = 0; $i < $num_lineups; $i++) {
   }
 
 
-  echo '<div class="main_container_lineup_coach">
+  echo '
+
+  <div class="btn_lineup">
+  <button id="show_hide_lineup"> </button>
+  </div>
+  
+  <div id="show_hide"> 
+  <div class="main_container_lineup_coach">
   <div class="lineup_container">
   <div>' 
   . $home_team_lineup[0]['formation'] .
@@ -237,6 +244,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
      }
 
      echo '</div>
+     </div>
      </div>';
 
     }
@@ -246,3 +254,29 @@ for ($i = 0; $i < $num_lineups; $i++) {
     }
 
 ?>
+
+<script>
+    let showLineup = true;
+
+    const showHideLineup = document.getElementById('show_hide_lineup');
+
+    const showHideId = document.querySelector('#show_hide');
+
+    showHideLineup.innerText = 'Toon opstellingen';
+    showHideId.setAttribute('class', 'hide');
+
+    showHideLineup.addEventListener('click', () => {
+
+        showLineup = !showLineup;
+
+        if (showLineup) {
+            showHideId.setAttribute('class', 'hide');
+            showHideLineup.innerText = 'Toon opstellingen';       
+        } 
+        else {
+            showHideId.removeAttribute('class', 'hide');
+            showHideLineup.innerText = 'Verberg opstellingen';
+        }       
+
+        })
+</script>

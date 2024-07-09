@@ -163,7 +163,7 @@ for ($i=0; $i < $numGames; $i++) {
    include ('./events.php');
    include ('./lineup.php');
    }      
- 
+
   }
  }
   }}

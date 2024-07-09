@@ -108,6 +108,14 @@ a {
     background-color: var(--lightgray);
 }
 
+.btn_lineup {
+    background-color: rgb(247, 244, 244);
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    height: 80px;
+}
+
 .main_container_event,
 .main_container_lineup {
     padding: 5px;
@@ -216,6 +224,20 @@ img {
     font-style: italic;
 }
 
+#show_hide_lineup {
+    margin-left: 3%;
+    background-color: var(--orange);
+    color: white;
+    border: 0px;
+    padding: 10px;
+    position: absolute;
+    top: 25%;
+}
+
+.hide {
+    visibility: hidden;
+}
+
 @media (max-width: 1500px) {
 .align-left {
     margin-left: 20%;
@@ -251,8 +273,13 @@ img {
     }
 
     .main_container, 
-    .main_container_event {
+    .main_container_event, 
+    .btn_lineup {
         width: 90%;
+    }
+
+    #show_hide_lineup {
+        margin: 3% 0 0 5%;
     }
 
     .flag_container img {
