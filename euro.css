@@ -36,7 +36,8 @@
 .event_container, 
 .event_container,
 .lineup_container, 
-#start_sub_team {
+#start_sub_team, 
+#play_min {
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -167,6 +168,13 @@ img {
 #type_pic {
     width: 20px;
     height: auto;
+}
+
+#play_min {
+    text-align: center;
+    color: red;
+    font-style: italic;
+    font-weight: bold;
 }
 
 #ref {

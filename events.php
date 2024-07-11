@@ -58,8 +58,13 @@ $response_event= json_decode($response_json, true);
 
 $num_events = $response_event['results'];
 
-$array_type = array('Goal' => 'football.jpg', 'Yellow Card' => 'yellow_card.jpeg', 
-'Red Card' => 'red_card.jpeg', 'subst' => 'substitute.jpg');
+$min_playing_minute = 
+$response_event['response'][$num_events-1]['time']['elapsed'] + 
+$response_event['response'][$num_events-1]['time']['extra'];
+
+
+$array_type = array('Goal' => 'football.png', 'Yellow Card' => 'yellow_card.png', 
+'Red Card' => 'red_card.png', 'subst' => 'substitute.png');
 
 
 $array_goal = array(
@@ -117,12 +122,18 @@ $away_team_goals = array();
         ]);
     }
   }
-
+echo explode('-', $response_event['response'][0]['time']['elapsed'])[1];
+ 
   usort($all_team_events, function($a, $b) {
     return $a['elapsed'] <=> $b['elapsed'];
   });
 
     $prevent_loop = true;
+
+    if (in_array($matchStatus, $statusInPlay))   
+    { 
+      echo '<div id="play_min"> min. '. $min_playing_minute . "'</div>"; 
+    }
               
         echo '<div class="main_container_event">';
               
@@ -145,9 +156,13 @@ $away_team_goals = array();
               
                 '<img id="type_pic" src= "img/' . 
                $array_type[$all_team_events[$i]['type']] . 
-               $array_type[$all_team_events[$i]['detail']] . ' ' . '">' .    
+               $array_type[$all_team_events[$i]['detail']] . ' ' . '">  ' .    
             
-               $all_team_events[$i]['elapsed'] . "' " .
+               (sizeof(explode('-', $all_team_events[$i]['elapsed'])) > 1 ? 
+               explode('-', $all_team_events[$i]['elapsed'])[1]:
+ 
+                  $all_team_events[$i]['elapsed']) . "' " .
+
                $all_team_events[$i]['name'];
 
                if ($all_team_events[$i]['type'] === 'subst') {

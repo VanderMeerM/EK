@@ -88,7 +88,7 @@ include('./header.php');
 if ($numGames > 0 ) {
 
 //for ($i= ($numGames-1); $i >=0 ; $i--) {
-for ($i=0; $i < $numGames; $i++) {
+for ($i = 0; $i < $numGames; $i++) {
 
 
   if (!$prevent_loop) {
@@ -96,6 +96,7 @@ for ($i=0; $i < $numGames; $i++) {
   $homeTeam = $response['response'][$i]['teams']['home']['name'];
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
+  $matchStatus = $response['response'][$i]['fixture']['status']['short'];
 
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
@@ -126,12 +127,12 @@ for ($i=0; $i < $numGames; $i++) {
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
          echo 
-         '<div class=' . (in_array($response['response'][$i]['fixture']['status']['short'], $statusInPlay)? '"score red"' : "score") . '>' . 
+         '<div class=' . (in_array($matchStatus, $statusInPlay)? '"score red"' : "score") . '>' . 
          $response['response'][$i]['goals']['home'] . '-' . 
          $response['response'][$i]['goals']['away'];
           
-         echo '<div style="font-size:15pt">'. (array_key_exists($response['response'][$i]['fixture']['status']['short'], $status)? 
-           $status[$response['response'][$i]['fixture']['status']['short']] : null) . 
+         echo '<div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
+         $matchStatus : null) . 
           '</div>
           </div>'; 
          
@@ -143,7 +144,8 @@ for ($i=0; $i < $numGames; $i++) {
            $countries[explode(', ', $response['response'][$i]['fixture']['referee'])[1]] : 
            explode(', ', $response['response'][$i]['fixture']['referee'])[1]) . ')
            <br></div>'; 
-          
+
+                   
            }
 
           echo '</div>';
