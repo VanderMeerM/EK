@@ -97,6 +97,7 @@ for ($i = 0; $i < $numGames; $i++) {
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
+  
 
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
@@ -132,7 +133,7 @@ for ($i = 0; $i < $numGames; $i++) {
          $response['response'][$i]['goals']['away'];
           
          echo '<div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
-         $matchStatus : null) . 
+         $status[$matchStatus] : null) . 
           '</div>
           </div>'; 
          

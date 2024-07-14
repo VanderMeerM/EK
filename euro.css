@@ -178,8 +178,9 @@ img {
 }
 
 #ref {
-    width: 25%;
+    width: 20%;
     height: auto;
+    margin-top: 10px;
 }
 
 .stscore_container, 

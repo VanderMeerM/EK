@@ -129,7 +129,7 @@ $away_team_goals = array();
 
     $prevent_loop = true;
 
-    if (in_array($matchStatus, $statusInPlay) && (sizeof($num_events) > 0))   
+    if (in_array($matchStatus, $statusInPlay) && ($num_events > 0))   
     { 
       echo '<div id="play_min"> min. '. $min_playing_minute . "'</div>"; 
     }
