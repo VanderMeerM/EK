@@ -122,7 +122,6 @@ $away_team_goals = array();
         ]);
     }
   }
-echo explode('-', $response_event['response'][0]['time']['elapsed'])[1];
  
   usort($all_team_events, function($a, $b) {
     return $a['elapsed'] <=> $b['elapsed'];
@@ -130,7 +129,7 @@ echo explode('-', $response_event['response'][0]['time']['elapsed'])[1];
 
     $prevent_loop = true;
 
-    if (in_array($matchStatus, $statusInPlay))   
+    if (in_array($matchStatus, $statusInPlay) && (sizeof($num_events) > 0))   
     { 
       echo '<div id="play_min"> min. '. $min_playing_minute . "'</div>"; 
     }

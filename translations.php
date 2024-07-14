@@ -14,3 +14,7 @@ $status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging');
 $status = array_combine($status_short, $status_nl);
 
 
+$euro_seasons = array(2008, 2012, 2016, 2020, 2024);
+
+$wc_seasons = array(2010, 2014, 2018, 2022);
+
