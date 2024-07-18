@@ -1,7 +1,7 @@
 
 <?php
 
-$json_lineup_path = './json/lineups/lineup_' . $_GET['id'] . '.json'; 
+$json_lineup_path = $path . '/json/lineups/lineup_' . $_GET['id'] . '.json'; 
 
 if (!file_exists($json_lineup_path)) { 
 
@@ -48,39 +48,7 @@ if ( ($_GET['date'] < date('Y-m-d', strtotime('today')))) {
   
   }
 
-/*
-
-$response_json = file_get_contents('./nlos.json', true);
-
-$response_event= json_decode($response_json, true);
-
-*/
-
-
-/*
-$array_type = array('Goal' => 'football.jpg', 'Yellow Card' => 'yellow_card.jpeg', 
-'Red Card' => 'red_card.jpeg', 'subst' => 'substitute.jpg');
-
-
-$array_goal = array(
-'Own Goal' => 'eigen goal', 
-'Penalty' => 'strafschop', 
-'Missed Penalty' => 'strafschop gemist');
-
-$array_comments = array(
-  'Foul' => 'overtreding', 
-  'Argument' => 'commentaar',
-  'Time wasting' => 'tijd rekken',
-  'Handball' => 'hands',
-  'Unallowed field entering' => 'geen toestemming betreden veld',
-  'Holding' => 'vasthouden',
-  'Penalty Shootout' => 'penaltyserie',
-  'Unsportsmanlike conduct' => 'onsportief gedrag'
-);
-
-*/
-
-$num_lineups = $response_lineup['results'];
+  $num_lineups = $response_lineup['results'];
 
 $home_team_lineup = array();
 $away_team_lineup = array();

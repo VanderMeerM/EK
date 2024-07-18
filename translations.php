@@ -1,11 +1,10 @@
 <?php 
 
-$countries_en = array('Germany','Switzerland','Scotland','Hungary','Spain','Italy','Albania','Croatia','England','Denmark','Slovenia','Serbia','Netherlands','France','Poland','Austria','Romania','Slovakia','Belgium','Ukraine','Czech Republic','Türkiye','Georgia');
+$countries = array('Duitsland' => 'Germany','Zwitserland' => 'Switzerland', 'Schotland' => 'Scotland', 'Hongarije' => 'Hungary', 
+'Spanje' => 'Spain', 'Italië' => 'Italy', 'Albanië' => 'Albania', 'Kroatië' => 'Croatia', 'Engeland' => 'England', 'Denemarken' => 'Denmark', 'Slovenië' => 'Slovenia','Servië' => 'Serbia', 'Nederland' => 'Netherlands', 'Frankrijk' => 'France', 'Polen' => 'Poland', 'Oostenrijk' => 'Austria', 'Roemanië' => 'Romania', 'Slowakije' => 'Slovakia', 'België' => 'Belgium', 'Oekraine' => 'Ukraïne', 'Tsjechië' => 'Czech Republic', 'Turkije' => 'Türkiye', 'Georgië' => 'Georgia', 'Griekenland' => 'Greece', 'Zweden' => 'Sweden', 
+'Ierland' => 'Rep. Of Ireland', 'IJsland' => 'Iceland', 'Rusland' => 'Russia');
 
-$countries_nl = array('Duitsland','Zwitserland','Schotland','Hongarije','Spanje','Italië','Albanië','Kroatië','Engeland','Denemarken','Slovenië','Servië','Nederland','Frankrijk','Polen','Oostenrijk','Roemenië','Slowakije','België','Oekraïne','Tsjechië','Turkije','Georgië');
-
-$countries = array_combine($countries_en, $countries_nl);
-
+$todaysmatches = 'Speelschema';
 
 $status_short = array('1H', 'HT', '2H', 'ET');
 
@@ -13,8 +12,54 @@ $status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging');
 
 $status = array_combine($status_short, $status_nl);
 
+$statusInPlay = array('1H', 'HT', '2H','ET', 'BT', 'P', 'SUSP', 'INT');
 
-$euro_seasons = array(2008, 2012, 2016, 2020, 2024);
+$euro_seasons = 
+[
+    2008 => [
+        'start' => '2008-06-07',
+        'end' => '2008-06-29'
+        ], 
+    2012 => [
+        'start' => '2012-06-08',
+        'end' => '2012-07-01'
+         ],
+    2016 => [
+        'start' => '2016-06-10',
+        'end' => '2016-07-10'
+        ],
+    2020 => [
+        'start' => '2019-03-21',
+        'end' => '2021-07-11'
+        ],
+    2024 => [
+        'start' => '2024-06-14',
+        'end' => '2024-07-14'
+        ]
+];
 
-$wc_seasons = array(2010, 2014, 2018, 2022);
+$wc_seasons = 
+[
+    2010 => [
+      'start' => '2010-06-11',
+      'end' => '2010-07-11'  
+    ], 
 
+    2014 => [
+    'start' => '2014-06-12',
+    'end' => '2014-07-13' 
+    ], 
+
+    2018 => [
+    'start' => '2018-06-14',
+    'end' => '2018-07-15' 
+    ], 
+    
+    2022 => [
+    'start' => '2022-11-20',
+    'end' => '2022-12-18' 
+    ]
+];
+
+
+?>

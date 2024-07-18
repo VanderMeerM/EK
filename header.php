@@ -1,81 +1,122 @@
 
 <?php 
 
+$league_id = 4;
+$path= './EK';
+
+?>
+
+<script> 
+let leagueId = <?php echo json_encode($league_id) ?>; 
+let path = <?php echo json_encode($path) ?>; 
+
+
+</script>
+
+<?php 
 echo '
 <div class="title_container"> 
 <div id="logo">
- <img src="https://media.api-sports.io/football/leagues/4.png"/> 
+ <img src= "https://media.api-sports.io/football/leagues/' . $league_id . '.png"/> 
+ 
 </div>
 <div id="matches_today"> '. 
 strtoupper($todaysmatches) . '
-
+</div>
 <div class= "btn_container"> ' .
 
-'<div>
-<form>
-<select name="season_selection">'; 
+'
+<form action=" " method="post">
+<select name="season_selection" onchange="this.form.submit()">'; 
 
-foreach ($euro_seasons as $es) {
-  echo ' 
-  <option value='. $es . '> ' . $es . '</option>';
+foreach ($euro_seasons as $key=>$value) {
+
+ echo '<option ' . ($key == intval($_COOKIE['selected_season']) ? 'selected ' : null) . 'value='. $key . '> ' . $key . '</option>';
 }
 
 echo '
 </select>
 </form>';
 
-$startYear = explode('-', $response['response'][0]['fixture']['date'])[0];
-$startMonth = explode('-', $response['response'][0]['fixture']['date'])[1];
-
-$startDay = explode('-', $response['response'][0]['fixture']['date'])[2];
-$startDay = explode('T', $startDay)[0];
-
-$endMonth = explode('-', $response['response'][$numGames-1]['fixture']['date'])[1];
-
-$endDay = explode('-', $response['response'][$numGames-1]['fixture']['date'])[2];
-$endDay = explode('T', $endDay)[0];
-
-sizeof(explode('0', $startMonth)) > 1 ? 
-$startMonth = explode('0', $startMonth)[1] : null;
-
-sizeof(explode('0', $endMonth)) > 1 ? 
-$endMonth = explode('0', $endMonth)[1] : null;
-
-
 echo '
-<input type="text" id="datepicker" value = ' . (!$_GET['date'] ? date($startYear . '-m-d') : $_GET['date']) . '>
-</div>
+<input type="text" id="datepicker" value = ' . (!$_GET['date'] ? date($selectedSeason . '-m-d') : $_GET['date']) . '>
+
 </div> 
 </div>
 </div>
 </div>';
 
+
+$day = $_GET['date'];
+
+$current_euro_season = 2024;
+
+if (!$_GET['date']) { 
+
+  setcookie('selected_season', $current_euro_season, time() + 3600, "/");
+  $end_date_last_euro_season = $euro_seasons[$current_euro_season]['end'];
+  ?>
+  <script>
+  let currentEuroSeason = <?php echo json_encode($current_euro_season) ?>;
+  let endDateLastEuroSeason = <?php echo json_encode($end_date_last_euro_season) ?>;
+
+  window.open(`${path}.php?season=${currentEuroSeason}&league=${leagueId}&date=${endDateLastEuroSeason}`, '_self');
+  </script>
+  <?php
+}
+
+?>
+
+<script>
+let selectedSeason;
+let startSeason;
+let endSeason;
+
+</script>
+
+<?
+
+if(isset($_POST["season_selection"])){
+  $selectedSeason = $_POST['season_selection'];
+  setcookie('selected_season', $selectedSeason, time() + 3600, "/");
+  $startSeason = $euro_seasons[$selectedSeason]['start'];
+  $endSeason = $euro_seasons[$selectedSeason]['end'];
+  ?>
+
+  <script>
+    selectedSeason =  <?php echo json_encode($selectedSeason) ?>;
+    startSeason = <?php echo json_encode($startSeason) ?>;
+    endSeason =  <?php echo json_encode($endSeason) ?>;
+    sessionStorage.setItem('selectedSeason', selectedSeason);
+    sessionStorage.setItem('startSeason', startSeason);
+    sessionStorage.setItem('endSeason', endSeason);
+
+  window.open(`${path}.php?season=${selectedSeason}&league=${leagueId}&date=${endSeason}`, '_self');
+
+  </script>
+  <?php
+   }
+     
  ?>
 
  <script>
 
-  let startYear = <?php echo json_encode($startYear) ?>;
-
-  let startMonth = <?php echo json_encode($startMonth) ?>;
-  let endMonth = <?php echo json_encode($endMonth) ?>;
-
-  let startDay = <?php echo json_encode($startDay); ?>;
-  let endDay = <?php echo json_encode($endDay); ?>;
-
- $( "#datepicker" ).datepicker({
+$( "#datepicker" ).datepicker({
    dateFormat: "yy-mm-dd",
-   minDate: new Date(2024, 5, 14),
-   maxDate: new Date(2024, 6, 14)
-   //minDate: new Date(startYear, startMonth-1, startDay),
-  // maxDate: new Date(startYear, endMonth-1, endDay)
-  
+   minDate: new Date(sessionStorage.getItem('startSeason', startSeason)),
+   maxDate: new Date(sessionStorage.getItem('endSeason', endSeason))
+    
  });
 
- $( "#datepicker" ).on('change', function() {
-    window.open('./EK2024.php?date='+$('#datepicker')[0].value, '_self')
+  
+  $( "#datepicker" ).on('change', function() {
+
+    let selectedDateInPicker = document.getElementById('datepicker').value;
+   window.open(`${path}.php?season=${sessionStorage.getItem('selectedSeason', selectedSeason)}&league=${leagueId}&date=${selectedDateInPicker}`, '_self')
  });
- 
- </script>
+  </script>
+  
+
 
 
 

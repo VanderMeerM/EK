@@ -1,7 +1,7 @@
 
 <?php
 
-$json_events_path = './json/events/events_' . $_GET['id'] . '.json'; 
+$json_events_path = './EK/json/events/events_' . $_GET['id'] . '.json'; 
 
 if (!file_exists($json_events_path)) { 
 
@@ -153,7 +153,7 @@ $away_team_goals = array();
             {
                 echo
               
-                '<img id="type_pic" src= "img/' . 
+                '<img id="type_pic" src=' . $path . '/img/' . 
                $array_type[$all_team_events[$i]['type']] . 
                $array_type[$all_team_events[$i]['detail']] . ' ' . '">  ' .    
             
