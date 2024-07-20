@@ -210,6 +210,12 @@ img {
     color: red;
 }
 
+.p_shootout {
+font-weight: bold; 
+font-size: 20px;
+color: rgb(75, 230, 75);
+}
+
 .event_container, 
 .event_container,
 .lineup_container

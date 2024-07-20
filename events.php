@@ -1,7 +1,7 @@
 
 <?php
 
-$json_events_path = './EK/json/events/events_' . $_GET['id'] . '.json'; 
+$json_events_path = $path . '/json/events/events_' . $_GET['id'] . '.json'; 
 
 if (!file_exists($json_events_path)) { 
 
@@ -48,40 +48,11 @@ if ( ($_GET['date'] < date('Y-m-d', strtotime('today')))) {
   
   }
 
-/*
-
-$response_json = file_get_contents('./nlos.json', true);
-
-$response_event= json_decode($response_json, true);
-
-*/
-
 $num_events = $response_event['results'];
 
 $min_playing_minute = 
 $response_event['response'][$num_events-1]['time']['elapsed'] + 
 $response_event['response'][$num_events-1]['time']['extra'];
-
-
-$array_type = array('Goal' => 'football.png', 'Yellow Card' => 'yellow_card.png', 
-'Red Card' => 'red_card.png', 'subst' => 'substitute.png');
-
-
-$array_goal = array(
-'Own Goal' => 'eigen goal', 
-'Penalty' => 'strafschop', 
-'Missed Penalty' => 'strafschop gemist');
-
-$array_comments = array(
-  'Foul' => 'overtreding', 
-  'Argument' => 'commentaar',
-  'Time wasting' => 'tijd rekken',
-  'Handball' => 'hands',
-  'Unallowed field entering' => 'geen toestemming betreden veld',
-  'Holding' => 'vasthouden',
-  'Penalty Shootout' => 'penaltyserie',
-  'Unsportsmanlike conduct' => 'onsportief gedrag'
-);
 
 $home_team_events = array();
 $away_team_events = array();

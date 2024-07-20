@@ -3,6 +3,7 @@
 
 $league_id = 4;
 $path= './EK';
+$current_euro_season = 2024;
 
 ?>
 
@@ -48,8 +49,6 @@ echo '
 
 
 $day = $_GET['date'];
-
-$current_euro_season = 2024;
 
 if (!$_GET['date']) { 
 
