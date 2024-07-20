@@ -47,15 +47,20 @@
     color: white;
     font-weight: bold;
     text-align: center;
+    height: fit-content;
 }
 
 .btn_container {
-    display: block;
+   margin: 0 auto;
     
 }
 
+form {
+    display: inline;
+}
+
 /*.btn_container a, */
-#datepicker {
+#datepicker, select, option {
     background-color: white;
     color: var(--orange);
     margin: 5px;

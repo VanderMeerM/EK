@@ -20,18 +20,19 @@ echo '
  <img src= "https://media.api-sports.io/football/leagues/' . $league_id . '.png"/> 
  
 </div>
+
+<div class= "btn_container"> ' . '
+
 <div id="matches_today"> '. 
 strtoupper($todaysmatches) . '
 </div>
-<div class= "btn_container"> ' .
-
-'
+<p>
 <form action=" " method="post">
 <select name="season_selection" onchange="this.form.submit()">'; 
 
 foreach ($euro_seasons as $key=>$value) {
 
- echo '<option ' . ($key == intval($_COOKIE['selected_season']) ? 'selected ' : null) . 'value='. $key . '> ' . $key . '</option>';
+ echo '<option ' . ($key == intval($_COOKIE['selected_league_season']) ? 'selected ' : null) . 'value='. $key . '> ' . $key . '</option>';
 }
 
 echo '
@@ -40,8 +41,7 @@ echo '
 
 echo '
 <input type="text" id="datepicker" value = ' . (!$_GET['date'] ? date($selectedSeason . '-m-d') : $_GET['date']) . '>
-
-</div> 
+</div>
 </div>
 </div>
 </div>';
@@ -53,7 +53,7 @@ $current_euro_season = 2024;
 
 if (!$_GET['date']) { 
 
-  setcookie('selected_season', $current_euro_season, time() + 3600, "/");
+  setcookie('selected_league_season', $current_euro_season, time() + 3600, "/");
   $end_date_last_euro_season = $euro_seasons[$current_euro_season]['end'];
   ?>
   <script>
@@ -78,7 +78,7 @@ let endSeason;
 
 if(isset($_POST["season_selection"])){
   $selectedSeason = $_POST['season_selection'];
-  setcookie('selected_season', $selectedSeason, time() + 3600, "/");
+  setcookie('selected_league_season', $selectedSeason, time() + 3600, "/");
   $startSeason = $euro_seasons[$selectedSeason]['start'];
   $endSeason = $euro_seasons[$selectedSeason]['end'];
   ?>
@@ -87,9 +87,9 @@ if(isset($_POST["season_selection"])){
     selectedSeason =  <?php echo json_encode($selectedSeason) ?>;
     startSeason = <?php echo json_encode($startSeason) ?>;
     endSeason =  <?php echo json_encode($endSeason) ?>;
-    sessionStorage.setItem('selectedSeason', selectedSeason);
-    sessionStorage.setItem('startSeason', startSeason);
-    sessionStorage.setItem('endSeason', endSeason);
+    sessionStorage.setItem('selectedLeagueSeason', selectedSeason);
+    sessionStorage.setItem('startLeagueSeason', startSeason);
+    sessionStorage.setItem('endLeagueSeason', endSeason);
 
   window.open(`${path}.php?season=${selectedSeason}&league=${leagueId}&date=${endSeason}`, '_self');
 
@@ -103,8 +103,8 @@ if(isset($_POST["season_selection"])){
 
 $( "#datepicker" ).datepicker({
    dateFormat: "yy-mm-dd",
-   minDate: new Date(sessionStorage.getItem('startSeason', startSeason)),
-   maxDate: new Date(sessionStorage.getItem('endSeason', endSeason))
+   minDate: new Date(sessionStorage.getItem('startLeagueSeason', startSeason)),
+   maxDate: new Date(sessionStorage.getItem('endLeagueSeason', endSeason))
     
  });
 
@@ -112,7 +112,7 @@ $( "#datepicker" ).datepicker({
   $( "#datepicker" ).on('change', function() {
 
     let selectedDateInPicker = document.getElementById('datepicker').value;
-   window.open(`${path}.php?season=${sessionStorage.getItem('selectedSeason', selectedSeason)}&league=${leagueId}&date=${selectedDateInPicker}`, '_self')
+   window.open(`${path}.php?season=${sessionStorage.getItem('selectedLeagueSeason', selectedSeason)}&league=${leagueId}&date=${selectedDateInPicker}`, '_self')
  });
   </script>
   
