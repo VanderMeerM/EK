@@ -4,7 +4,7 @@ $countries = array('Duitsland' => 'Germany','Zwitserland' => 'Switzerland', 'Sch
 'Spanje' => 'Spain', 'Italië' => 'Italy', 'Albanië' => 'Albania', 'Kroatië' => 'Croatia', 'Engeland' => 'England', 'Denemarken' => 'Denmark', 'Slovenië' => 'Slovenia','Servië' => 'Serbia', 'Nederland' => 'Netherlands', 'Frankrijk' => 'France', 'Polen' => 'Poland', 'Oostenrijk' => 'Austria', 'Roemanië' => 'Romania', 'Slowakije' => 'Slovakia', 'België' => 'Belgium', 'Oekraine' => 'Ukraïne', 'Tsjechië' => 'Czech Republic', 'Turkije' => 'Türkiye', 'Georgië' => 'Georgia', 'Griekenland' => 'Greece', 'Zweden' => 'Sweden', 
 'Ierland' => 'Rep. Of Ireland', 'IJsland' => 'Iceland', 'Rusland' => 'Russia');
 
-$todaysmatches = 'Speelschema';
+$headerinfo = 'Selecteer een jaar en datum. Klik op de wedstrijd voor meer details.';
 
 $status_short = array('1H', 'HT', '2H', 'ET');
 
@@ -49,7 +49,7 @@ $euro_seasons =
         'end' => '2016-07-10'
         ],
     2020 => [
-        'start' => '2019-03-21',
+        'start' => '2021-06-11',
         'end' => '2021-07-11'
         ],
     2024 => [

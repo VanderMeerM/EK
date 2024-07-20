@@ -24,8 +24,8 @@ echo '
 
 <div class= "btn_container"> ' . '
 
-<div id="matches_today"> '. 
-strtoupper($todaysmatches) . '
+<div id="header_info">'. 
+$headerinfo . '
 </div>
 <p>
 <form action=" " method="post">
@@ -101,6 +101,8 @@ if(isset($_POST["season_selection"])){
  <script>
 
 $( "#datepicker" ).datepicker({
+  monthNames: [ "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" ],
+  dayNamesMin: [ "Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za" ],
    dateFormat: "yy-mm-dd",
    minDate: new Date(sessionStorage.getItem('startLeagueSeason', startSeason)),
    maxDate: new Date(sessionStorage.getItem('endLeagueSeason', endSeason))

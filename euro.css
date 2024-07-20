@@ -29,7 +29,7 @@
     margin-left: 10px;
 }
 
-#matches_today,
+#header_info,
 .country_container,
 .stscore_container, 
 .score, .nomatches, a,
@@ -41,13 +41,13 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#matches_today {
-    font-size: 30pt;
+#header_info {
+    font-size: 10pt;
     margin: 0 auto;    
     color: white;
-    font-weight: bold;
     text-align: center;
     height: fit-content;
+    max-width: 250px;
 }
 
 .btn_container {
@@ -252,6 +252,7 @@ color: rgb(75, 230, 75);
     padding: 10px;
     position: absolute;
     top: 25%;
+    width: 145px;
 }
 
 .hide {
@@ -314,10 +315,6 @@ color: rgb(75, 230, 75);
 }
 
 @media (max-width: 450px) {
-
-    #matches_today {
-        font-size: 20pt;
-    }
 
     .flag_container img {
         width: 75px;
