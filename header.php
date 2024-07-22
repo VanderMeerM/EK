@@ -5,6 +5,10 @@ $league_id = 4;
 $path= './EK';
 $current_euro_season = 2024;
 
+$seasonInUrl = $_GET['season'];
+$startSeasonInUrl = $euro_seasons[$seasonInUrl]['start'];
+$endSeasonInUrl = $euro_seasons[$seasonInUrl]['end'];
+
 if (!$_COOKIE['selected_euro_league_season'] && $_GET['season']) {
   setcookie('selected_euro_league_season', $_GET['season'], time() + 3600, "/");
 }
@@ -57,11 +61,17 @@ $day = $_GET['date'];
 if (!$_GET['date']) { 
 
   setcookie('selected_euro_league_season', $current_euro_season, time() + 3600, "/");
+  $start_date_last_euro_season = $euro_seasons[$current_euro_season]['start'];
   $end_date_last_euro_season = $euro_seasons[$current_euro_season]['end'];
   ?>
   <script>
   let currentEuroSeason = <?php echo json_encode($current_euro_season) ?>;
+  let startDateLastEuroSeason = <?php echo json_encode($start_date_last_euro_season) ?>;
   let endDateLastEuroSeason = <?php echo json_encode($end_date_last_euro_season) ?>;
+  
+  sessionStorage.setItem('selectedEuroLeagueSeason', currentEuroSeason);
+  sessionStorage.setItem('startEuroLeagueSeason', startDateLastEuroSeason);
+  sessionStorage.setItem('endEuroLeagueSeason', endDateLastEuroSeason);
 
   window.open(`${path}.php?season=${currentEuroSeason}&league=${leagueId}&date=${endDateLastEuroSeason}`, '_self');
   </script>
@@ -71,30 +81,45 @@ if (!$_GET['date']) {
 ?>
 
 <script>
-let selectedSeason;
-let startSeason;
-let endSeason;
+
+let selectedEuroSeason;
+let startEuroSeason;
+let endEuroSeason;
+let seasonInURL;
+let startSeasonInUrl;
+let endSeasonInUrl;
+
+if ((!sessionStorage.getItem('startEuroLeagueSeason')) || 
+(!sessionStorage.getItem('endEuroLeagueSeason'))) {
+
+seasonInURL = <?php echo json_encode($seasonInUrl) ?>;
+startSeasonInUrl =  <?php echo json_encode($startSeasonInUrl) ?>;
+endSeasonInUrl =  <?php echo json_encode($endSeasonInUrl) ?>;
+sessionStorage.setItem('selectedEuroLeagueSeason', seasonInURL);
+sessionStorage.setItem('startEuroLeagueSeason', startSeasonInUrl);
+sessionStorage.setItem('endEuroLeagueSeason', endSeasonInUrl);
+};
 
 </script>
 
 <?
 
 if(isset($_POST["season_selection"])){
-  $selectedSeason = $_POST['season_selection'];
-  setcookie('selected_euro_league_season', $selectedSeason, time() + 3600, "/");
-  $startSeason = $euro_seasons[$selectedSeason]['start'];
-  $endSeason = $euro_seasons[$selectedSeason]['end'];
+  $selectedEuroSeason = $_POST['season_selection'];
+  setcookie('selected_euro_league_season', $selectedEuroSeason, time() + 3600, "/");
+  $startEuroSeason = $euro_seasons[$selectedEuroSeason]['start'];
+  $endEuroSeason = $euro_seasons[$selectedEuroSeason]['end'];
   ?>
 
   <script>
-    selectedSeason =  <?php echo json_encode($selectedSeason) ?>;
-    startSeason = <?php echo json_encode($startSeason) ?>;
-    endSeason =  <?php echo json_encode($endSeason) ?>;
-    sessionStorage.setItem('selectedLeagueSeason', selectedSeason);
-    sessionStorage.setItem('startLeagueSeason', startSeason);
-    sessionStorage.setItem('endLeagueSeason', endSeason);
+    selectedEuroSeason =  <?php echo json_encode($selectedEuroSeason) ?>;
+    startEuroSeason = <?php echo json_encode($startEuroSeason) ?>;
+    endEuroSeason =  <?php echo json_encode($endEuroSeason) ?>;
+    sessionStorage.setItem('selectedEuroLeagueSeason', selectedEuroSeason);
+    sessionStorage.setItem('startEuroLeagueSeason', startEuroSeason);
+    sessionStorage.setItem('endEuroLeagueSeason', endEuroSeason);
 
-  window.open(`${path}.php?season=${selectedSeason}&league=${leagueId}&date=${endSeason}`, '_self');
+  window.open(`${path}.php?season=${selectedEuroSeason}&league=${leagueId}&date=${endEuroSeason}`, '_self');
 
   </script>
   <?php
@@ -109,8 +134,8 @@ $( "#datepicker" ).datepicker({
   monthNames: [ "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" ],
   dayNamesMin: [ "Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za" ],
    dateFormat: "yy-mm-dd",
-   minDate: new Date(sessionStorage.getItem('startLeagueSeason', startSeason)),
-   maxDate: new Date(sessionStorage.getItem('endLeagueSeason', endSeason))
+   minDate: new Date(sessionStorage.getItem('startEuroLeagueSeason', startEuroSeason)),
+   maxDate: new Date(sessionStorage.getItem('endEuroLeagueSeason', endEuroSeason))
     
  });
 
@@ -118,7 +143,7 @@ $( "#datepicker" ).datepicker({
   $( "#datepicker" ).on('change', function() {
 
     let selectedDateInPicker = document.getElementById('datepicker').value;
-   window.open(`${path}.php?season=${sessionStorage.getItem('selectedLeagueSeason', selectedSeason)}&league=${leagueId}&date=${selectedDateInPicker}`, '_self')
+   window.open(`${path}.php?season=${sessionStorage.getItem('selectedEuroLeagueSeason', selectedEuroSeason)}&league=${leagueId}&date=${selectedDateInPicker}`, '_self')
  });
   </script>
   
