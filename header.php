@@ -5,6 +5,10 @@ $league_id = 4;
 $path= './EK';
 $current_euro_season = 2024;
 
+if (!$_COOKIE['selected_league_season'] && $_GET['season']) {
+  setcookie('selected_league_season', $_GET['season'], time() + 3600, "/");
+}
+
 ?>
 
 <script> 
@@ -33,7 +37,7 @@ $headerinfo . '
 
 foreach ($euro_seasons as $key=>$value) {
 
- echo '<option ' . ($key == intval($_COOKIE['selected_league_season']) ? 'selected ' : null) . 'value='. $key . '> ' . $key . '</option>';
+ echo '<option ' . (($key == intval($_COOKIE['selected_league_season']) || $key == $_GET['season']) ? 'selected ' : null) . 'value='. $key . '> ' . $key . '</option>';
 }
 
 echo '
@@ -94,6 +98,7 @@ if(isset($_POST["season_selection"])){
 
   </script>
   <?php
+
    }
      
  ?>
