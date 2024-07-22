@@ -5,8 +5,8 @@ $league_id = 4;
 $path= './EK';
 $current_euro_season = 2024;
 
-if (!$_COOKIE['selected_league_season'] && $_GET['season']) {
-  setcookie('selected_league_season', $_GET['season'], time() + 3600, "/");
+if (!$_COOKIE['selected_euro_league_season'] && $_GET['season']) {
+  setcookie('selected_euro_league_season', $_GET['season'], time() + 3600, "/");
 }
 
 ?>
@@ -37,7 +37,7 @@ $headerinfo . '
 
 foreach ($euro_seasons as $key=>$value) {
 
- echo '<option ' . (($key == intval($_COOKIE['selected_league_season']) || $key == $_GET['season']) ? 'selected ' : null) . 'value='. $key . '> ' . $key . '</option>';
+ echo '<option ' . (($key == intval($_COOKIE['selected_euro_league_season']) || $key == $_GET['season']) ? 'selected ' : null) . 'value='. $key . '> ' . $key . '</option>';
 }
 
 echo '
@@ -56,7 +56,7 @@ $day = $_GET['date'];
 
 if (!$_GET['date']) { 
 
-  setcookie('selected_league_season', $current_euro_season, time() + 3600, "/");
+  setcookie('selected_euro_league_season', $current_euro_season, time() + 3600, "/");
   $end_date_last_euro_season = $euro_seasons[$current_euro_season]['end'];
   ?>
   <script>
@@ -81,7 +81,7 @@ let endSeason;
 
 if(isset($_POST["season_selection"])){
   $selectedSeason = $_POST['season_selection'];
-  setcookie('selected_league_season', $selectedSeason, time() + 3600, "/");
+  setcookie('selected_euro_league_season', $selectedSeason, time() + 3600, "/");
   $startSeason = $euro_seasons[$selectedSeason]['start'];
   $endSeason = $euro_seasons[$selectedSeason]['end'];
   ?>
