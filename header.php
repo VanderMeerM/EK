@@ -37,6 +37,9 @@ $headerinfo . '
 </div>
 <p>
 <form action=" " method="post">
+
+<label for="season_selection">Jaar</label>
+
 <select name="season_selection" onchange="this.form.submit()">'; 
 
 foreach ($euro_seasons as $key=>$value) {
@@ -49,6 +52,7 @@ echo '
 </form>';
 
 echo '
+<label for="datepicker">Datum</label>
 <input type="text" id="datepicker" value = ' . (!$_GET['date'] ? date($selectedSeason . '-m-d') : $_GET['date']) . '>
 </div>
 </div>
