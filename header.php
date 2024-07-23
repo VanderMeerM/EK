@@ -3,7 +3,7 @@
 
 $league_id = 4;
 $path= './EK';
-$current_euro_season = 2024;
+$current_euro_season = $last_euro_season;
 
 $seasonInUrl = $_GET['season'];
 $startSeasonInUrl = $euro_seasons[$seasonInUrl]['start'];
