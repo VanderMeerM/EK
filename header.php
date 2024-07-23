@@ -2,8 +2,8 @@
 <?php 
 
 $league_id = 4;
-$path= './EK';
-$current_euro_season = 2024;
+$path= './index';
+$current_euro_season = $last_euro_season;
 
 $seasonInUrl = $_GET['season'];
 $startSeasonInUrl = $euro_seasons[$seasonInUrl]['start'];
@@ -77,7 +77,7 @@ if (!$_GET['date']) {
   sessionStorage.setItem('startEuroLeagueSeason', startDateLastEuroSeason);
   sessionStorage.setItem('endEuroLeagueSeason', endDateLastEuroSeason);
 
-  window.open(`${path}.php?season=${currentEuroSeason}&league=${leagueId}&date=${endDateLastEuroSeason}`, '_self');
+  window.open(`?season=${currentEuroSeason}&league=${leagueId}&date=${endDateLastEuroSeason}`, '_self');
   </script>
   <?php
 }
@@ -123,7 +123,7 @@ if(isset($_POST["season_selection"])){
     sessionStorage.setItem('startEuroLeagueSeason', startEuroSeason);
     sessionStorage.setItem('endEuroLeagueSeason', endEuroSeason);
 
-  window.open(`${path}.php?season=${selectedEuroSeason}&league=${leagueId}&date=${endEuroSeason}`, '_self');
+  window.open(`?season=${selectedEuroSeason}&league=${leagueId}&date=${endEuroSeason}`, '_self');
 
   </script>
   <?php
@@ -147,7 +147,7 @@ $( "#datepicker" ).datepicker({
   $( "#datepicker" ).on('change', function() {
 
     let selectedDateInPicker = document.getElementById('datepicker').value;
-   window.open(`${path}.php?season=${sessionStorage.getItem('selectedEuroLeagueSeason', selectedEuroSeason)}&league=${leagueId}&date=${selectedDateInPicker}`, '_self')
+   window.open(`?season=${sessionStorage.getItem('selectedEuroLeagueSeason', selectedEuroSeason)}&league=${leagueId}&date=${selectedDateInPicker}`, '_self')
  });
   </script>
   
