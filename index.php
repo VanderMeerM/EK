@@ -34,6 +34,7 @@ curl_setopt_array($curl, array(
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_SSL_VERIFYPEER => 0, // Voor Strato? 
   CURLOPT_HTTPHEADER => array(
     'x-rapidapi-key: f7e1aa54fd70dd93a3c920f503282930',
     'x-rapidapi-host: v3.football.api-sports.io',
